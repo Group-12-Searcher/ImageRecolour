@@ -15,7 +15,9 @@ class ImageRecolorUI(Frame):
         self.hueValue = IntVar()
         self.hasPreviousQuery = False
 
-        self.recolorer = recolor.recolor()
+        screen_width = parent.winfo_screenwidth()
+        screen_height = parent.winfo_screenheight()
+        self.recolorer = recolor.recolor(screen_width, screen_height)
         
         self.initUI()
 
@@ -70,7 +72,7 @@ class ImageRecolorUI(Frame):
     def drawRegion(self):
         # invoke backend program and pass image URL to it
         print("Drawing region for %s" % self.imageURL)
-        self.recolorer.pickColor(self.imageURL)
+        self.recolorer.selectRegion(self.imageURL)
 
     def loadInputs(self):
         self.colorRangeLabel = Label(self.parent, text="Specify color range amount: ")
